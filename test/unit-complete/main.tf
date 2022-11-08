@@ -1,7 +1,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# CREATE TWO REPOSITORIES WITH TEAMS AND DEFAULTS
-# This example covers the whole functionality of the module. We create two different repositories and attach default
-# settings. Also we create a single team and attach it to one of the repositories.
+# CREATE A REPOSITORY
+# This example covers the whole functionality of the module. 
+# Also we create a single team and attach it to one of the repositories.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ module "repository" {
   name                   = var.name
   description            = var.description
   homepage_url           = var.url
-  private                = false
+  visibility             = "private"
   has_issues             = var.has_issues
   has_projects           = var.has_projects
   has_wiki               = var.has_wiki
@@ -158,25 +158,6 @@ module "repository" {
   autolink_references = var.autolink_references
 
   app_installations = var.app_installations
-}
-
-# ---------------------------------------------------------------------------------------------------------------------
-# TEST B
-# We are creating a repository using some defaults defined in
-# var.repository_defaults
-# ---------------------------------------------------------------------------------------------------------------------
-
-module "repository-with-defaults" {
-  source = "../.."
-
-  name           = var.repository_with_defaults_name
-  description    = var.repository_with_defaults_description
-  defaults       = var.repository_defaults
-  default_branch = "development"
-
-  branches = [
-    { name = "development" },
-  ]
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
